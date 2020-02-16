@@ -1,13 +1,13 @@
 
-SOURCES = main.cpp win.cpp dynamicline.cpp math.cpp
+SOURCES = main.cpp win.cpp dynamicline.cpp math.cpp source.cpp recorder.cpp
 EXECUTABLE = Viz
 
 
 OBJECTS = $(patsubst %.cpp,%.o,$(SOURCES))
 DEPENDS = $(OBJECTS:.o=.d)
-CFLAGS =  -I . -c -g -MMD -MP -std=c++11 -Wall -pedantic
+CFLAGS =  -I . -c -g -MMD -MP -std=gnu++11 -Wall -pedantic
 LFLAGS = -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system 
-CC=clang++-3.5
+CC=clang++-3.8
 
 all: $(SOURCES) $(EXECUTABLE)
 
@@ -22,6 +22,7 @@ clean:
 	rm -f $(EXECUTABLE) $(OBJECTS) $(DEPENDS)
 
 run: $(EXECUTABLE)
-	./$(EXECUTABLE) # wav here
+	# rec -q -b 16 -r 44100 -t wav - | ./$(EXECUTABLE) 
+	./$(EXECUTABLE) 
 
 -include $(DEPENDS)
