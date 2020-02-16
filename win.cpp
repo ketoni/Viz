@@ -17,7 +17,7 @@ void Window::update() {
 
 
 void Window::flash(float intensity, sf::Color c) {
-	float supressor = 0.3 * intensity;
+	float supressor = 1 * intensity;
 	clear(sf::Color(c.r * supressor, c.g * supressor, c.b * supressor, 255));
 }
 
